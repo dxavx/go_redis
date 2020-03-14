@@ -1,0 +1,31 @@
+version: '3.7'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+
+  api:
+    build:
+      context: api
+    hostname: api
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - redis
+    networks:
+      - app-tier
+
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./storage/redis/data:/data
+    ports:
+      - 6379:6379
+    logging:
+      driver: none
+    networks:
+      - app-tier

@@ -1,8 +1,8 @@
 package main
 
 import (
-"fmt"
-"github.com/gin-gonic/gin"
+	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v7"
 )
 
@@ -14,7 +14,7 @@ func main() {
 	// Simple group: v1
 	v1 := router.Group("/v1")
 	{
-		v1.POST("/url.insert", ExampleClient)
+		v1.GET("/url.insert", ExampleClient)
 
 	}
 	router.Run(":8080")
@@ -35,7 +35,7 @@ func ExampleNewClient() {
 
 func ExampleClient(*gin.Context) {
 	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "redis:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})

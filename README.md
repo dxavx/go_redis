@@ -1,4 +1,5 @@
 ![Docker Compose Actions Workflow](https://github.com/AlexanderOkhrimenko/go_redis/workflows/Docker%20Compose%20Actions%20Workflow/badge.svg?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/AlexanderOkhrimenko/go_redis)](https://goreportcard.com/report/github.com/AlexanderOkhrimenko/go_redis)
 
 ## Go + Redis + Docker 
 

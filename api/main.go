@@ -1,9 +1,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis/v7"
+	"github.com/go-redis/redis/v8"
 )
 
 func main() {
@@ -17,44 +18,48 @@ func main() {
 		v1.GET("/url.insert", ExampleClient)
 
 	}
-	router.Run(":8080")
+	err := router.Run(":8080")
+	if err != nil {
+		return
+	}
 
 }
 
-func ExampleNewClient() {
-	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-
-	pong, err := client.Ping().Result()
-	fmt.Println(pong, err)
-	// Output: PONG <nil>
-}
+//func ExampleNewClient() {
+//	client := redis.NewClient(&redis.Options{
+//		Addr:     "localhost:6379",
+//		Password: "", // no password set
+//		DB:       0,  // use default DB
+//	})
+//
+//	pong, err := client.Ping().Result()
+//	fmt.Println(pong, err)
+//	// Output: PONG <nil>
+//}
 
 func ExampleClient(*gin.Context) {
+	var ctx = context.Background()
 	client := redis.NewClient(&redis.Options{
 		Addr:     "redis:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
-	err := client.Set("key", "value", 0).Err()
+	err := client.Set(ctx, "test_key", "123", 0).Err()
 	if err != nil {
 		panic(err)
 	}
 
-	val, err := client.Get("key").Result()
+	val, err := client.Get(ctx, "test_key").Result()
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("key", val)
+	fmt.Println("test_key = ", val)
 
-	val2, err := client.Get("key2").Result()
+	val2, err := client.Get(ctx, "key2").Result()
 	if err == redis.Nil {
 		fmt.Println("key2 does not exist")
 	} else if err != nil {
-		panic(err)
+		fmt.Println()
 	} else {
 		fmt.Println("key2", val2)
 	}

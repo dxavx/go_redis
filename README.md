@@ -1,5 +1,5 @@
-![Docker Compose Actions Workflow](https://github.com/AlexanderOkhrimenko/go_redis/workflows/Docker%20Compose%20Actions%20Workflow/badge.svg?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/AlexanderOkhrimenko/go_redis)](https://goreportcard.com/report/github.com/AlexanderOkhrimenko/go_redis)
+![Docker Compose Actions Workflow](https://github.com/dxavx/go_redis/workflows/Docker%20Compose%20Actions%20Workflow/badge.svg?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dxavx/go_redis)](https://goreportcard.com/report/github.com/dxavx/go_redis)
 
 ## Go + Redis + Docker 
 
@@ -13,14 +13,3 @@ Purge: `bash ./purge.sh`
 Test: `curl "http://localhost:8080/v1/url.insert"`
 
 ***
-
-## Go + Redis + Docker 
-
-Проект соединяющий NoSQL Redis и код  на языке Go для подключения к ней, Проект упакован в Docker, состоит из двух сервисов : redis ,  api .Gо код соединяется с базой, создает и читает некую фиксированную структуру.
-
-
-Build: `bash ./build.sh`
-
-Purge: `bash ./purge.sh`
-
-Test: `curl "http://localhost:8080/v1/url.insert"`
